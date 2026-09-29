@@ -1,0 +1,8 @@
+== Intercepted transmission ==
+We think it's a single-byte XOR. Good luck.
+
+payload (hex):
+212e2337262739312b2c252e271d203b36271d3a2d301d2b311d36302b342b232e3f
+
+Also intercepted (base64), source unknown:
+Y2xhdWRle2Jhc2U2NF9pc19ub3RfeG9yfQ==

@@ -1,0 +1,5 @@
+kind: net
+service: crypto-insane-cbc
+port: 8304
+url: http://127.0.0.1:8304/
+solver: solve.py

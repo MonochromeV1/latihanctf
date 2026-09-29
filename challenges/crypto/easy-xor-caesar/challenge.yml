@@ -1,0 +1,16 @@
+name: "One Byte Wonder"
+author: MonochromeV1
+category: crypto
+difficulty: easy
+value: 100
+type: standard
+description: |
+  A single-byte XOR intercept. Recover the key, recover the flag. There's also a
+  base64 blob in the file — it decodes to something that looks like a flag, but
+  isn't the one that scores.
+flags:
+  - claude{single_byte_xor_is_trivial}
+files:
+  - dist/cipher.txt
+state: visible
+version: "0.1"

@@ -1,0 +1,5 @@
+kind: net
+service: crypto-hard-ecb
+port: 8303
+url: http://127.0.0.1:8303/
+solver: solve.py

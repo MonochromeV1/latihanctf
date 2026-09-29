@@ -1,0 +1,1 @@
+claude{ecb_mode_hides_nothing_decoy}

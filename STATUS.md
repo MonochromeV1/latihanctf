@@ -17,7 +17,7 @@ Docker, and the solver venv are healthy.
 | Web        | ✅ 4/4 | ✅ 4/4      | recon, UNION SQLi, SSTI RCE, SSRF→pickle RCE |
 | PWN        | ✅ 4/4 | ✅ 4/4      | var overwrite, ret2win+fmt, ret2libc ROP, heap UAF |
 | Reverse    | ✅ 4/4 | ✅ 4/4      | strcmp, XOR-stack keygen, bytecode VM, z3 keygen |
-| Crypto     | ⏳    | –            | |
+| Crypto     | ✅ 4/4 | ✅ 4/4      | single-byte XOR, RSA cube-root, ECB & CBC oracles |
 | Forensics  | ⏳    | –            | |
 | OSINT      | ⏳    | –            | |
 | AI         | ⏳    | –            | |
@@ -56,6 +56,10 @@ Installs performed this session:
 | medium-xor-stack | reverse | medium | ✅ | ✅ `claude{x0r_on_the_stack_with_a_key}` | 1 |
 | hard-vm-bytecode | reverse | hard | ✅ | ✅ `claude{stack_vm_reversed_by_hand}` | 1 |
 | insane-keygen-z3 | reverse | insane | ✅ | ✅ `claude{z3_solves_the_keygen_easily}` | 1 |
+| easy-xor-caesar | crypto | easy | ✅ | ✅ `claude{single_byte_xor_is_trivial}` | 1 |
+| medium-rsa-smalle | crypto | medium | ✅ | ✅ `claude{cube_root_small_e_rsa}` | 1 |
+| hard-aes-ecb-oracle | crypto | hard | ✅ | ✅ `claude{ecb_penguin_byte_by_byte}` | 1 |
+| insane-cbc-padding-oracle | crypto | insane | ✅ | ✅ `claude{cbc_padding_oracle_leaks_all}` | 1 |
 
 ## Morning pre-push checklist
 
