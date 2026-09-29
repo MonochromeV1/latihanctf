@@ -1,0 +1,163 @@
+# LatihanCTF — top-level stack: CTFd + all networked challenges.
+# Challenges live on an ISOLATED bridge network and publish ONLY to 127.0.0.1.
+# Per-container resource limits prevent one player from DoSing the host.
+#
+# SECURITY: never expose challenge ports (81xx/82xx/83xx/86xx/90xx) or CTFd on a
+# public/hostile network. These targets are intentionally vulnerable.
+name: latihanctf
+
+# Reusable resource limits for every intentionally-vulnerable challenge.
+x-chal: &chal
+  restart: unless-stopped
+  mem_limit: 256m
+  pids_limit: 128
+  cpus: 0.50
+  security_opt:
+    - no-new-privileges:true
+  networks:
+    - chalnet
+
+services:
+  ctfd:
+    image: ctfd/ctfd:latest   # pin to a release tag for reproducibility in prod
+    container_name: latihanctf-ctfd
+    ports:
+      - "127.0.0.1:8000:8000"
+    environment:
+      - UPLOAD_FOLDER=/var/uploads
+      - LOG_FOLDER=/var/log/CTFd
+      - REVERSE_PROXY=false
+      - WORKERS=1
+    volumes:
+      - ctfd_uploads:/var/uploads
+      - ctfd_logs:/var/log/CTFd
+    networks:
+      - ctfdnet
+    restart: unless-stopped
+
+  # ---- Web ----
+  web-easy-robots:
+    <<: *chal
+    build: ./challenges/web/easy-robots-recon/src
+    container_name: chal-web-easy
+    ports: ["127.0.0.1:8101:80"]
+
+  web-medium-sqli:
+    <<: *chal
+    build: ./challenges/web/medium-sqli-login/src
+    container_name: chal-web-medium
+    ports: ["127.0.0.1:8102:80"]
+
+  web-hard-ssti:
+    <<: *chal
+    build: ./challenges/web/hard-ssti-notes/src
+    container_name: chal-web-hard
+    ports: ["127.0.0.1:8103:5000"]
+
+  web-insane-ssrf:
+    <<: *chal
+    build: ./challenges/web/insane-ssrf-deserialize/src
+    container_name: chal-web-insane
+    ports: ["127.0.0.1:8104:5000"]
+
+  # ---- PWN ----
+  pwn-easy:
+    <<: *chal
+    build: ./challenges/pwn/easy-overflow-var/src
+    container_name: chal-pwn-easy
+    ports: ["127.0.0.1:8201:9001"]
+
+  pwn-medium:
+    <<: *chal
+    build: ./challenges/pwn/medium-ret2win-fmt/src
+    container_name: chal-pwn-medium
+    ports: ["127.0.0.1:8202:9001"]
+
+  pwn-hard:
+    <<: *chal
+    build: ./challenges/pwn/hard-ret2libc-rop/src
+    container_name: chal-pwn-hard
+    ports: ["127.0.0.1:8203:9001"]
+
+  pwn-insane:
+    <<: *chal
+    build: ./challenges/pwn/insane-heap-tcache/src
+    container_name: chal-pwn-insane
+    ports: ["127.0.0.1:8204:9001"]
+
+  # ---- Crypto (networked oracles) ----
+  crypto-hard-ecb:
+    <<: *chal
+    build: ./challenges/crypto/hard-aes-ecb-oracle/src
+    container_name: chal-crypto-hard
+    ports: ["127.0.0.1:8303:9001"]
+
+  crypto-insane-cbc:
+    <<: *chal
+    build: ./challenges/crypto/insane-cbc-padding-oracle/src
+    container_name: chal-crypto-insane
+    ports: ["127.0.0.1:8304:9001"]
+
+  # ---- AI / Prompt Injection ----
+  ai-easy:
+    <<: *chal
+    build: ./challenges/ai/easy-system-prompt/src
+    container_name: chal-ai-easy
+    ports: ["127.0.0.1:8601:5000"]
+    environment:
+      - LLM_BACKEND=${LLM_BACKEND:-mock}
+      - LLM_MODEL=${LLM_MODEL:-}
+      - LLM_API_BASE=${LLM_API_BASE:-}
+      - LLM_API_KEY=${LLM_API_KEY:-}
+
+  ai-medium:
+    <<: *chal
+    build: ./challenges/ai/medium-roleplay-bypass/src
+    container_name: chal-ai-medium
+    ports: ["127.0.0.1:8602:5000"]
+    environment:
+      - LLM_BACKEND=${LLM_BACKEND:-mock}
+      - LLM_MODEL=${LLM_MODEL:-}
+      - LLM_API_BASE=${LLM_API_BASE:-}
+      - LLM_API_KEY=${LLM_API_KEY:-}
+
+  ai-hard:
+    <<: *chal
+    build: ./challenges/ai/hard-output-filter/src
+    container_name: chal-ai-hard
+    ports: ["127.0.0.1:8603:5000"]
+    environment:
+      - LLM_BACKEND=${LLM_BACKEND:-mock}
+      - LLM_MODEL=${LLM_MODEL:-}
+      - LLM_API_BASE=${LLM_API_BASE:-}
+      - LLM_API_KEY=${LLM_API_KEY:-}
+
+  ai-insane:
+    <<: *chal
+    build: ./challenges/ai/insane-guardrails-judge/src
+    container_name: chal-ai-insane
+    ports: ["127.0.0.1:8604:5000"]
+    environment:
+      - LLM_BACKEND=${LLM_BACKEND:-mock}
+      - LLM_MODEL=${LLM_MODEL:-}
+      - LLM_API_BASE=${LLM_API_BASE:-}
+      - LLM_API_KEY=${LLM_API_KEY:-}
+
+  # ---- Boot2Root ----
+  boot2root-easy:
+    <<: *chal
+    build: ./challenges/boot2root/easy-cmdinject/src
+    container_name: chal-b2r-easy
+    ports: ["127.0.0.1:9001:80"]
+    # foothold container also exposes ssh internally; root via SUID misconfig
+
+networks:
+  ctfdnet:
+    driver: bridge
+  chalnet:
+    driver: bridge
+    # isolated: challenges reach each other but publish only to 127.0.0.1
+
+volumes:
+  ctfd_uploads:
+  ctfd_logs:

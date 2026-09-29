@@ -1,0 +1,45 @@
+# LatihanCTF challenge manifest (human-readable index).
+# Runtime import is done by scripts/setup_ctfd.py via the CTFd API.
+# Points: Easy 100 / Medium 250 / Hard 500 / Insane 1000.
+name: LatihanCTF
+flag_format: "claude{lower_snake_case}"
+authorized_use_only: true
+
+categories:
+  web:
+    - {tier: easy,   slug: easy-robots-recon,       net: true,  port: 8101}
+    - {tier: medium, slug: medium-sqli-login,        net: true,  port: 8102}
+    - {tier: hard,   slug: hard-ssti-notes,          net: true,  port: 8103}
+    - {tier: insane, slug: insane-ssrf-deserialize,  net: true,  port: 8104}
+  pwn:
+    - {tier: easy,   slug: easy-overflow-var,        net: true,  port: 8201}
+    - {tier: medium, slug: medium-ret2win-fmt,       net: true,  port: 8202}
+    - {tier: hard,   slug: hard-ret2libc-rop,        net: true,  port: 8203}
+    - {tier: insane, slug: insane-heap-tcache,       net: true,  port: 8204}
+  reverse:
+    - {tier: easy,   slug: easy-strcmp-password,     net: false}
+    - {tier: medium, slug: medium-xor-stack,         net: false}
+    - {tier: hard,   slug: hard-vm-bytecode,         net: false}
+    - {tier: insane, slug: insane-keygen-z3,         net: false}
+  crypto:
+    - {tier: easy,   slug: easy-xor-caesar,          net: false}
+    - {tier: medium, slug: medium-rsa-smalle,        net: false}
+    - {tier: hard,   slug: hard-aes-ecb-oracle,      net: true,  port: 8303}
+    - {tier: insane, slug: insane-cbc-padding-oracle, net: true, port: 8304}
+  forensics:
+    - {tier: easy,   slug: easy-exif-strings,        net: false}
+    - {tier: medium, slug: medium-lsb-stego,         net: false}
+    - {tier: hard,   slug: hard-header-repair,       net: false}
+    - {tier: insane, slug: insane-multistage,        net: false}
+  osint:
+    - {tier: easy,   slug: easy-gps-exif,            net: false}
+    - {tier: medium, slug: medium-username-pivot,    net: false}
+    - {tier: hard,   slug: hard-doc-metadata,        net: false}
+    - {tier: insane, slug: insane-multihop,          net: false}
+  ai:
+    - {tier: easy,   slug: easy-system-prompt,       net: true,  port: 8601}
+    - {tier: medium, slug: medium-roleplay-bypass,   net: true,  port: 8602}
+    - {tier: hard,   slug: hard-output-filter,       net: true,  port: 8603}
+    - {tier: insane, slug: insane-guardrails-judge,  net: true,  port: 8604}
+  boot2root:
+    - {tier: easy,   slug: easy-cmdinject,           net: true,  port: 9001, flags: 2}

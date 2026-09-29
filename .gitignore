@@ -1,0 +1,29 @@
+# Python
+__pycache__/
+*.pyc
+*.pyo
+.venv/
+venv/
+*.egg-info/
+
+# Secrets / local config
+.env
+.ctf/config.local
+.ctf/config
+
+# CTFd runtime data
+ctfd-data/
+ctfd_data/
+.data/
+
+# Node
+node_modules/
+
+# Build artifacts
+*.o
+*.obj
+*.log
+.venv_build.log
+
+# OS
+.DS_Store
