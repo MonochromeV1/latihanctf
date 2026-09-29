@@ -1,0 +1,4 @@
+kind: net
+service: pwn-hard
+port: 8203
+solver: solve.py

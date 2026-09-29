@@ -1,0 +1,2 @@
+claude{ret2libc_rodata_decoy}
+claude{vpn_session_token_decoy}

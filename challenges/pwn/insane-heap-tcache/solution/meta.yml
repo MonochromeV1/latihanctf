@@ -1,0 +1,4 @@
+kind: net
+service: pwn-insane
+port: 8204
+solver: solve.py

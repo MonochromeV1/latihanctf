@@ -1,0 +1,4 @@
+kind: net
+service: pwn-easy
+port: 8201
+solver: solve.py

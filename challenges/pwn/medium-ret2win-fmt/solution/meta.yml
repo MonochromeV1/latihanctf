@@ -1,0 +1,4 @@
+kind: net
+service: pwn-medium
+port: 8202
+solver: solve.py
