@@ -1,0 +1,2 @@
+claude{exif_artist_decoy}
+claude{just_reading_strings_decoy}

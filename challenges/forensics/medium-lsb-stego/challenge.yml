@@ -1,0 +1,15 @@
+name: "Least Significant"
+author: MonochromeV1
+category: forensics
+difficulty: medium
+value: 250
+type: standard
+description: |
+  A perfectly ordinary PNG. The flag is hidden a single bit at a time in the
+  pixels. The claude{...} you can `strings` out of a metadata chunk is a decoy.
+flags:
+  - claude{lsb_hides_in_plain_sight}
+files:
+  - dist/stego.png
+state: visible
+version: "0.1"

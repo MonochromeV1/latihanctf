@@ -18,7 +18,7 @@ Docker, and the solver venv are healthy.
 | PWN        | ✅ 4/4 | ✅ 4/4      | var overwrite, ret2win+fmt, ret2libc ROP, heap UAF |
 | Reverse    | ✅ 4/4 | ✅ 4/4      | strcmp, XOR-stack keygen, bytecode VM, z3 keygen |
 | Crypto     | ✅ 4/4 | ✅ 4/4      | single-byte XOR, RSA cube-root, ECB & CBC oracles |
-| Forensics  | ⏳    | –            | |
+| Forensics  | ✅ 4/4 | ✅ 4/4      | EXIF, LSB stego, header repair, pcap→stego→zip chain |
 | OSINT      | ⏳    | –            | |
 | AI         | ⏳    | –            | |
 | Boot2Root  | ⏳    | –            | |
@@ -60,6 +60,10 @@ Installs performed this session:
 | medium-rsa-smalle | crypto | medium | ✅ | ✅ `claude{cube_root_small_e_rsa}` | 1 |
 | hard-aes-ecb-oracle | crypto | hard | ✅ | ✅ `claude{ecb_penguin_byte_by_byte}` | 1 |
 | insane-cbc-padding-oracle | crypto | insane | ✅ | ✅ `claude{cbc_padding_oracle_leaks_all}` | 1 |
+| easy-exif-strings | forensics | easy | ✅ | ✅ `claude{exif_usercomment_holds_the_key}` | 2 |
+| medium-lsb-stego | forensics | medium | ✅ | ✅ `claude{lsb_hides_in_plain_sight}` | 1 |
+| hard-header-repair | forensics | hard | ✅ | ✅ `claude{fix_the_magic_bytes_to_read_me}` | 1 |
+| insane-multistage | forensics | insane | ✅ | ✅ `claude{pcap_carve_stego_unzip_chain}` | 2 |
 
 ## Morning pre-push checklist
 

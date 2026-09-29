@@ -1,0 +1,2 @@
+claude{pcap_plaintext_decoy}
+claude{wrong_file_in_the_archive}

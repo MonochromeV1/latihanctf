@@ -1,0 +1,18 @@
+name: "Drop Chain"
+author: MonochromeV1
+category: forensics
+difficulty: insane
+value: 1000
+type: standard
+description: |
+  We captured a file drop. Somewhere in this pcap are two files and the key to
+  one of them. Carve them out, use what the traffic leaks, and follow the chain:
+  packets → image → archive → flag.
+
+  A plaintext claude{...} in the capture and a file inside the archive are decoys.
+flags:
+  - claude{pcap_carve_stego_unzip_chain}
+files:
+  - dist/challenge.pcap
+state: visible
+version: "0.1"

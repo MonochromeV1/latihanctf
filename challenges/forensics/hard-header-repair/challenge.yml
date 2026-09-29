@@ -1,0 +1,16 @@
+name: "Broken Signature"
+author: MonochromeV1
+category: forensics
+difficulty: hard
+value: 500
+type: standard
+description: |
+  This file won't open — its magic bytes were wiped. Figure out what it should be,
+  repair the header, and parse it. The flag is in a compressed chunk (so `strings`
+  won't help). The plaintext claude{...} you can `strings` out is a decoy.
+flags:
+  - claude{fix_the_magic_bytes_to_read_me}
+files:
+  - dist/broken.png
+state: visible
+version: "0.1"

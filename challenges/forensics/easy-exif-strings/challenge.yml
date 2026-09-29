@@ -1,0 +1,16 @@
+name: "Say Cheese"
+author: MonochromeV1
+category: forensics
+difficulty: easy
+value: 100
+type: standard
+description: |
+  A photo from a "spy" camera. The metadata knows more than the picture does.
+  `strings` will show you a couple of claude{...} — but only one field actually
+  holds the flag.
+flags:
+  - claude{exif_usercomment_holds_the_key}
+files:
+  - dist/evidence.jpg
+state: visible
+version: "0.1"
