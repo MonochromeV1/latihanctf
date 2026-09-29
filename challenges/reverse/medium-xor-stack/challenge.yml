@@ -1,0 +1,18 @@
+name: "Serial Please"
+author: MonochromeV1
+category: reverse
+difficulty: medium
+value: 250
+type: standard
+description: |
+  A keygen-me. The serial is checked through a small transform, and the flag is
+  assembled on the stack by XOR-ing with your serial. Recover the serial, get the
+  flag. Brute force is a trap.
+
+  The claude{...} you can `strings` out is a decoy.
+flags:
+  - claude{x0r_on_the_stack_with_a_key}
+files:
+  - dist/rev
+state: visible
+version: "0.1"

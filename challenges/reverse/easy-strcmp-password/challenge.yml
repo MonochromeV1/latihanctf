@@ -1,0 +1,17 @@
+name: "Say the Magic Word"
+author: MonochromeV1
+category: reverse
+difficulty: easy
+value: 100
+type: standard
+description: |
+  A tiny login binary. Find the password it wants; it will reward you with the
+  flag (which it decodes at runtime, so `strings` won't hand it to you).
+
+  The claude{...} you can `strings` out of the binary is a decoy.
+flags:
+  - claude{strcmp_is_the_first_lesson}
+files:
+  - dist/rev
+state: visible
+version: "0.1"
