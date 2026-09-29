@@ -25,13 +25,19 @@ ADMIN_PASS = os.environ.get("CTFD_ADMIN_PASS", "ctfd_admin_pw")
 ADMIN_EMAIL = os.environ.get("CTFD_ADMIN_EMAIL", "admin@latihanctf.local")
 CTF_NAME = os.environ.get("CTFD_NAME", "LatihanCTF")
 
-NONCE_RE = re.compile(r"name=['\"]nonce['\"]\s+value=['\"]([0-9a-f]+)['\"]", re.I)
+# CTFd exposes the CSRF nonce as a JS var on every page; fall back to the hidden input.
+NONCE_RE = re.compile(r"csrfNonce['\"]?\s*[:=]\s*['\"]([0-9a-f]{16,})['\"]", re.I)
+NONCE_RE2 = re.compile(r"name=['\"]nonce['\"][^>]*value=['\"]([0-9a-f]{16,})['\"]", re.I)
+NONCE_RE3 = re.compile(r"value=['\"]([0-9a-f]{16,})['\"][^>]*name=['\"]nonce['\"]", re.I)
 
 
 def nonce(session, path):
     r = session.get(BASE + path)
-    m = NONCE_RE.search(r.text)
-    return m.group(1) if m else None
+    for rx in (NONCE_RE, NONCE_RE2, NONCE_RE3):
+        m = rx.search(r.text)
+        if m:
+            return m.group(1)
+    return None
 
 
 def is_setup(session):

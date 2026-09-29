@@ -10,6 +10,9 @@ prints no decoy. **Not pushed** — awaiting your review (`git push` when ready)
 Totals: 30 challenge entries · 8 categories · ~45 planted decoys · CTFd stack +
 isolated network + per-container resource limits.
 
+**`make deploy` verified:** CTFd boots and imports all **30 challenges** (4 per
+Jeopardy category + 2 Boot2Root flags), confirmed via the CTFd API.
+
 ### Summary table
 
 | Category   | Built | Solvers pass | Notes |
