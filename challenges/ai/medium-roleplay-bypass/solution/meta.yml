@@ -1,0 +1,5 @@
+kind: net
+service: ai-medium
+port: 8602
+url: http://127.0.0.1:8602/
+solver: solve.py

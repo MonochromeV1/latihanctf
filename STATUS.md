@@ -20,7 +20,7 @@ Docker, and the solver venv are healthy.
 | Crypto     | ✅ 4/4 | ✅ 4/4      | single-byte XOR, RSA cube-root, ECB & CBC oracles |
 | Forensics  | ✅ 4/4 | ✅ 4/4      | EXIF, LSB stego, header repair, pcap→stego→zip chain |
 | OSINT      | ✅ 4/4 | ✅ 4/4      | GPS EXIF, username pivot, doc metadata, multi-hop |
-| AI         | ⏳    | –            | |
+| AI         | ✅ 4/4 | ✅ 4/4      | prompt leak, roleplay bypass, encode-past-filter, RAG inject (mock backend) |
 | Boot2Root  | ⏳    | –            | |
 
 ## PHASE 0 — preflight
@@ -68,6 +68,10 @@ Installs performed this session:
 | medium-username-pivot | osint | medium | ✅ | ✅ `claude{username_pivot_to_the_paste}` | 2 |
 | hard-doc-metadata | osint | hard | ✅ | ✅ `claude{doc_metadata_led_to_the_mirror}` | 2 |
 | insane-multihop | osint | insane | ✅ | ✅ `claude{four_hops_exif_user_paste_vault}` | 3 |
+| easy-system-prompt | ai | easy | ✅ | ✅ `claude{prompt_leak_no_defense}` | 1 |
+| medium-roleplay-bypass | ai | medium | ✅ | ✅ `claude{roleplay_jailbreak_bypass}` | 1 |
+| hard-output-filter | ai | hard | ✅ | ✅ `claude{encode_to_beat_the_filter}` | 1 |
+| insane-guardrails-judge | ai | insane | ✅ | ✅ `claude{indirect_injection_via_rag}` | 1 |
 
 ## Morning pre-push checklist
 

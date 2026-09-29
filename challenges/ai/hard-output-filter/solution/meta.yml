@@ -1,0 +1,5 @@
+kind: net
+service: ai-hard
+port: 8603
+url: http://127.0.0.1:8603/
+solver: solve.py

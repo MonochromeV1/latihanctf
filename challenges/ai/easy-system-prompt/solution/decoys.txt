@@ -1,0 +1,1 @@
+claude{ai_welcome_banner_decoy}

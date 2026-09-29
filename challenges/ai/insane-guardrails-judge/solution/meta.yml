@@ -1,0 +1,5 @@
+kind: net
+service: ai-insane
+port: 8604
+url: http://127.0.0.1:8604/
+solver: solve.py
