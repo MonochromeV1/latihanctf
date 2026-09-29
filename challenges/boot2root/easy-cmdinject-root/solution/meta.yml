@@ -1,0 +1,5 @@
+kind: net
+service: boot2root-easy
+port: 9001
+url: http://127.0.0.1:9001/
+solver: solve.py

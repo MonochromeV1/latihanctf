@@ -21,7 +21,7 @@ Docker, and the solver venv are healthy.
 | Forensics  | ✅ 4/4 | ✅ 4/4      | EXIF, LSB stego, header repair, pcap→stego→zip chain |
 | OSINT      | ✅ 4/4 | ✅ 4/4      | GPS EXIF, username pivot, doc metadata, multi-hop |
 | AI         | ✅ 4/4 | ✅ 4/4      | prompt leak, roleplay bypass, encode-past-filter, RAG inject (mock backend) |
-| Boot2Root  | ⏳    | –            | |
+| Boot2Root  | ✅ 2/2 | ✅ 2/2      | cmd-injection foothold → sudo/find privesc; user.txt + root.txt |
 
 ## PHASE 0 — preflight
 
@@ -72,6 +72,8 @@ Installs performed this session:
 | medium-roleplay-bypass | ai | medium | ✅ | ✅ `claude{roleplay_jailbreak_bypass}` | 1 |
 | hard-output-filter | ai | hard | ✅ | ✅ `claude{encode_to_beat_the_filter}` | 1 |
 | insane-guardrails-judge | ai | insane | ✅ | ✅ `claude{indirect_injection_via_rag}` | 1 |
+| easy-cmdinject (user.txt) | boot2root | easy | ✅ | ✅ `claude{foothold_via_command_injection}` | 2 |
+| easy-cmdinject-root (root.txt) | boot2root | hard | ✅ | ✅ `claude{sudo_find_gtfobin_gets_root}` | 2 |
 
 ## Morning pre-push checklist
 

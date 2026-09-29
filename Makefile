@@ -5,11 +5,12 @@ COMPOSE := docker compose
 
 .DEFAULT_GOAL := help
 
-.PHONY: help venv build up down deploy test clean prune status
+.PHONY: help venv tools build up down deploy test clean prune status
 
 help:
 	@echo "LatihanCTF — targets:"
-	@echo "  make venv     - create solver virtualenv (.venv)"
+	@echo "  make venv     - create solver virtualenv (.venv) from requirements-dev.txt"
+	@echo "  make tools    - check host tools (docker, gcc, exiftool, steghide, ...)"
 	@echo "  make build    - build all challenge docker images"
 	@echo "  make up       - start CTFd + all networked challenges"
 	@echo "  make deploy   - up + import challenges into CTFd"
@@ -21,7 +22,13 @@ help:
 venv:
 	python3 -m venv $(VENV)
 	$(PY) -m pip install -q --upgrade pip wheel
-	$(PY) -m pip install -q requests pycryptodome Pillow sympy z3-solver ctfcli
+	$(PY) -m pip install -q -r requirements-dev.txt
+
+tools:
+	@echo "Checking host tools needed by solvers/build..."
+	@for t in docker gcc objdump nm readelf strings file exiftool steghide binwalk zip curl jq; do \
+	  command -v $$t >/dev/null 2>&1 && echo "  ok   $$t" || echo "  MISS $$t (apt install)"; \
+	done
 
 build:
 	$(COMPOSE) build

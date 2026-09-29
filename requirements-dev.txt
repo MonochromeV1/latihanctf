@@ -1,0 +1,19 @@
+# Python deps for the SOLVERS + tooling (installed into .venv by `make venv`).
+# Challenge containers install their own deps via their Dockerfiles.
+#
+# NOTE: pwntools is intentionally omitted — it does not build on Python 3.14
+# (its `unicorn` dep has no wheel), so pwn/crypto-oracle solvers use raw
+# sockets/struct instead.
+requests
+pycryptodome
+Pillow
+sympy
+z3-solver
+scapy          # forensics: pcap parsing (insane-multistage)
+pyzipper       # forensics: (AES) zip handling if needed
+PyYAML         # test harness (scripts/run_solvers.py)
+ctfcli         # optional: challenge sync helper
+
+# Host tools also required by some solvers/build scripts (install via apt, not pip):
+#   docker, docker compose, gcc, binutils (objdump/nm/readelf/strings), file,
+#   exiftool, steghide, binwalk, zip, curl, jq, netcat

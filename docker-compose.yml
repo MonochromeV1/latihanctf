@@ -148,8 +148,10 @@ services:
     <<: *chal
     build: ./challenges/boot2root/easy-cmdinject/src
     container_name: chal-b2r-easy
-    ports: ["127.0.0.1:9001:80"]
-    # foothold container also exposes ssh internally; root via SUID misconfig
+    ports: ["127.0.0.1:9001:8080"]
+    # Boot2Root needs privesc to work, so DISABLE no-new-privileges here
+    # (it would otherwise neuter sudo/SUID). Resource limits still apply.
+    security_opt: []
 
 networks:
   ctfdnet:
