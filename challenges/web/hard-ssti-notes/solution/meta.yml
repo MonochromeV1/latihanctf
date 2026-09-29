@@ -1,0 +1,5 @@
+kind: net
+service: web-hard-ssti
+port: 8103
+url: http://127.0.0.1:8103/
+solver: solve.py

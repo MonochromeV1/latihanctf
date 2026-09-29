@@ -1,0 +1,3 @@
+claude{ssti_html_comment_decoy}
+claude{ssti_curly_braces_decoy}
+claude{backup_flag_not_the_real_one}

@@ -1,0 +1,5 @@
+kind: net
+service: web-medium-sqli
+port: 8102
+url: http://127.0.0.1:8102/
+solver: solve.py

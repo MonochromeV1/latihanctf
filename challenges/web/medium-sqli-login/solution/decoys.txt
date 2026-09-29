@@ -1,0 +1,3 @@
+claude{sql_injection_bypassed_but_not_done}
+claude{admin_note_decoy}
+claude{view_source_is_not_enough}

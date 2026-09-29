@@ -1,0 +1,5 @@
+kind: net
+service: web-easy-robots
+port: 8101
+url: http://127.0.0.1:8101/
+solver: solve.py
