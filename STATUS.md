@@ -2,13 +2,13 @@
 
 ## ⚑ GO / NO-GO
 
-**PHASE 0: GO.** Rebuilt from a clean slate on 2026-09-29 (previous tree + git
-history were intentionally wiped at the user's explicit request). Tooling,
-Docker, and the solver venv are healthy.
+**GO — build COMPLETE.** All 8 categories built from a clean slate (2026-09-29→30)
+and committed. **`make test` = 30/30 solvers PASS, 0 fail** (28 Jeopardy across 7
+categories + 2 Boot2Root flags). Every solver recovers the exact real flag and
+prints no decoy. **Not pushed** — awaiting your review (`git push` when ready).
 
-> Note: this is a full from-scratch rebuild. Categories are (re)built and
-> committed one at a time; solvers are run end-to-end before each commit.
-> **Not pushed** — awaiting morning review.
+Totals: 30 challenge entries · 8 categories · ~45 planted decoys · CTFd stack +
+isolated network + per-container resource limits.
 
 ### Summary table
 
@@ -77,8 +77,18 @@ Installs performed this session:
 
 ## Morning pre-push checklist
 
-- [ ] Full status table complete
-- [ ] `make test` passes all solvers
-- [ ] `grep -rn "claude{" challenges/*/*/dist/` classified (real / decoy / intended-artifact)
-- [ ] `find . -size +50M` (flag files near GitHub's 100 MB limit)
-- [ ] **DO NOT PUSH** until reviewed
+- [x] Full status table complete (all 30 entries above)
+- [x] `make test` passes all solvers — **30/30 PASS, 0 fail**
+- [x] `grep -rn "claude{" challenges/*/*/dist/` classified — real flags in dist ONLY
+      for intended-artifact challenges (forensics-easy EXIF, osint easy/medium/hard);
+      RE/PWN/crypto/boot2root ship only decoys, real flags encoded/server-side
+- [x] `find . -size +50M` — none (largest: `pwn/hard-ret2libc-rop/dist/libc.so.6` ~1.9 MB)
+- [ ] **DID NOT PUSH** — left for your review. See `POST_PUSH.md` for next steps.
+
+## How to review & run
+```bash
+make venv && make tools     # solver deps + host-tool check
+make deploy                 # CTFd up + import all challenges (http://127.0.0.1:8000)
+make test                   # re-run every solver (expect 30/30)
+```
+CTFd admin: `admin` / `ctfd_admin_pw` (set by scripts/setup_ctfd.py).
