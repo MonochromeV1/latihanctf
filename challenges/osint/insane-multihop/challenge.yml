@@ -1,0 +1,20 @@
+name: "Follow the Thread"
+author: MonochromeV1
+category: osint
+difficulty: insane
+value: 1000
+type: standard
+description: |
+  Start with a single photo and follow the trail: the photo's metadata names a
+  handle, the handle's profile points at a paste, the paste (encoded) reveals a
+  key and an unlisted vault page, and the vault holds the flag (encoded with that
+  key). Every hop has a decoy.
+flags:
+  - claude{four_hops_exif_user_paste_vault}
+files:
+  - dist/clue.jpg
+  - dist/profiles/gh0st_r3con.html
+  - dist/dumps/paste_7f.txt
+  - dist/vault/README.html
+state: visible
+version: "0.1"

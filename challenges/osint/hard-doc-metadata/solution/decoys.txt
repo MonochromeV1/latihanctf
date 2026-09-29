@@ -1,0 +1,2 @@
+claude{document_body_text_decoy}
+claude{mirror_index_decoy}

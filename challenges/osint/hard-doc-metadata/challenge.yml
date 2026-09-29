@@ -1,0 +1,20 @@
+name: "Read the Fine Metadata"
+author: MonochromeV1
+category: osint
+difficulty: hard
+value: 500
+type: standard
+description: |
+  A leaked Word document (brief.docx) and a static mirror of an internal site.
+  The document's metadata knows about a page the mirror's index never links to.
+  Find it.
+
+  Decoys: a flag in the document body and one on the mirror's index page.
+flags:
+  - claude{doc_metadata_led_to_the_mirror}
+files:
+  - dist/brief.docx
+  - dist/mirror/index.html
+  - dist/mirror/notes/brief_9f2a1c.html
+state: visible
+version: "0.1"

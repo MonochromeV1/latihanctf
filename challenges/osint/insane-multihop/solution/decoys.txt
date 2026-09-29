@@ -1,0 +1,3 @@
+claude{exif_alias_decoy}
+claude{profile_bio_decoy}
+claude{vault_placeholder_decoy}
